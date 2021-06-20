@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AbilityScoreContainer from './AbilityScoreContainer';
 import DiceContainer from './DiceContainer';
 import "./Shell.css";
 
@@ -13,6 +14,7 @@ class Shell extends Component {
             <div>
                 <div className="background">
                     <DiceContainer></DiceContainer>
+                    <AbilityScoreContainer></AbilityScoreContainer>
                 </div>
             </div>
         );
