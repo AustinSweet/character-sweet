@@ -17,6 +17,15 @@ input {
   background-color: #121212;
 }
 
+.edit-form {
+  width: 7rem;
+  cursor: pointer;
+}
+
+.edit-submit {
+  width: 6rem;
+}
+
 .score-wrapper {
   background-color: #6c757d;
   border-radius: 0.25rem;
@@ -25,10 +34,17 @@ input {
   display: inline-flex;
   justify-content: space-between;
   width: 8rem;
+  cursor: pointer;
 }
 
 .score-field {
   width: 8rem;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.edit-score-field {
+  width: 6rem;
   border-radius: 0.25rem;
   background-color: lightgray;
 }

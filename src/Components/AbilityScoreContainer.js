@@ -14,7 +14,8 @@ class AbilityScoreContainer extends Component {
                 scoreField: '',
                 modifierField: '',
                 AbilityScoreArray: arr,
-                isHidden: true
+                addIsHidden: true,
+                editIsHidden: false
             }
         }
         else {
@@ -24,12 +25,19 @@ class AbilityScoreContainer extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.toggleForm = this.toggleForm.bind(this);
+        this.toggleAddForm = this.toggleAddForm.bind(this);
+        this.toggleEditForm = this.toggleEditForm.bind(this);
     }
 
-    toggleForm(){
+    toggleAddForm(){
         this.setState(() => ({
-            isHidden: !this.state.isHidden
+            addIsHidden: !this.state.addIsHidden
+        }));
+    }
+
+    toggleEditForm(){
+        this.setState(() => ({
+            editIsHidden: !this.state.editIsHidden
         }));
     }
 
@@ -52,8 +60,8 @@ class AbilityScoreContainer extends Component {
     render(){
         return(
             <div className="ability-score-wrapper">
-                <Button variant="secondary" onClick={this.toggleForm}>Add Ability Score</Button>
-                {this.state.isHidden && <div className="add-ability-score">
+                <Button variant="secondary" onClick={this.toggleAddForm}>Add Ability Score</Button>
+                {this.state.addIsHidden && <div className="add-ability-score">
                     <form onSubmit={this.handleSubmit} autoCapitalize="on" autoComplete="off">
                         <label>
                             Name:
@@ -73,10 +81,27 @@ class AbilityScoreContainer extends Component {
                 <hr></hr> 
                 <div className="ability-scores">
                     {this.state.AbilityScoreArray.map((x) => (
-                        <div className="score-wrapper" key={x.name}>
-                            <div id="name">{x.name}</div>
-                            <div id="score">{x.score}</div>
-                            <div id="mod">{x.modifier}</div>
+                        <div className="score-wrapper" key={x.name} onClick={this.toggleEditForm}>
+                            {!this.state.editIsHidden && <div id="name">{x.name}</div>}
+                            {!this.state.editIsHidden && <div id="score">{x.score}</div>}
+                            {!this.state.editIsHidden && <div id="mod">{x.modifier}</div>}
+                            {this.state.editIsHidden && <div>
+                    <form onSubmit={this.handleSubmit} autoCapitalize="on" autoComplete="off" className="edit-form">
+                        <label>
+                            Name:
+                            <input type="text" className="edit-score-field" name="nameField" value={x.name} onChange={this.handleChange}></input>
+                        </label>
+                        <label>
+                            Score:
+                            <input type="text" className="edit-score-field" name="scoreField" value={x.score} onChange={this.handleChange}></input>
+                        </label>
+                        <label>
+                            Modifier:
+                            <input type="text" className="edit-score-field" name="modifierField" value={x.modifier} onChange={this.handleChange}></input>
+                        </label>
+                        <input type="submit" className="edit-submit" value="Submit"></input>
+                    </form>
+                </div>}
                         </div>
                     ))}
                 </div>
