@@ -67,7 +67,6 @@ class DiceContainer extends Component {
 
     render() {
         return (
-                <div>
                       <Navbar bg="dark" variant="dark" className="all-dice">
                       <div className="results-container">
                         <div className="results-label">Last Roll: </div>
@@ -85,7 +84,6 @@ class DiceContainer extends Component {
                         </div>
                         <Button variant="secondary" className="custom-die" onClick={this.rollDQuestion}>D?</Button>
                       </Navbar>
-                </div>
         )
     }
 }
