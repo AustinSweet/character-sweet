@@ -1,3 +1,11 @@
+input {
+  width: 8rem;
+}
+
+.add-ability-score {
+  margin-top: 1rem;
+}
+
 .ability-score-wrapper {
   color: white;
 }
@@ -11,4 +19,32 @@
 
 .score-wrapper {
   background-color: #6c757d;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  display: inline-flex;
+  justify-content: space-between;
+  width: 8rem;
+}
+
+.score-field {
+  width: 8rem;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+#mod {
+  color: white;
+  background-color: #121212;
+  border-radius: 0.25rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+#score {
+  color: black;
+  background-color: white;
+  border-radius: 0.25rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }

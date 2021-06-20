@@ -19,7 +19,7 @@ class AbilityScoreContainer extends Component {
         }
         else {
             this.state = {
-                AbilityScoreArray: [{}]
+                AbilityScoreArray: []
             }
         }
         this.handleChange = this.handleChange.bind(this);
@@ -57,25 +57,26 @@ class AbilityScoreContainer extends Component {
                     <form onSubmit={this.handleSubmit}>
                         <label>
                             Name:
-                            <input type="text" name="nameField" onChange={this.handleChange}></input>
+                            <input type="text" className="score-field" name="nameField" onChange={this.handleChange}></input>
                         </label>
                         <label>
                             Score:
-                            <input type="text" name="scoreField" onChange={this.handleChange}></input>
+                            <input type="text" className="score-field" name="scoreField" onChange={this.handleChange}></input>
                         </label>
                         <label>
                             Modifier:
-                            <input type="text" name="modifierField" onChange={this.handleChange}></input>
+                            <input type="text" className="score-field" name="modifierField" onChange={this.handleChange}></input>
                         </label>
                         <input type="submit" value="Add"></input>
                     </form>
                 </div>}
+                <hr></hr> 
                 <div className="ability-scores">
                     {this.state.AbilityScoreArray.map((x) => (
                         <div className="score-wrapper" key={x.name}>
-                            <div>{x.name}</div>
-                            <div>{x.score}</div>
-                            <div>{x.modifier}</div>
+                            <div id="name">{x.name}</div>
+                            <div id="score">{x.score}</div>
+                            <div id="mod">{x.modifier}</div>
                         </div>
                     ))}
                 </div>
