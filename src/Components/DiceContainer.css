@@ -1,0 +1,56 @@
+.all-dice {
+  align-items: center;
+  width: 100%vw;
+}
+
+.die {
+  margin-left: 1rem;
+  margin-top: 1.4rem;
+}
+
+.custom-container {
+  background-color: #212529;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.custom-die {
+  margin-top: 1.4rem;
+}
+
+.custom-input {
+  background-color: lightgray;
+  border-radius: 0.25rem;
+  width: 5rem;
+  text-align: center;
+  margin-left: 4rem;
+}
+
+.custom-label {
+  margin-left: 4rem;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-right: 1rem;
+}
+
+.results {
+  width: 5rem;
+  background-color: lightgray;
+  border-radius: 0.25rem;
+  text-align: center;
+  font-size: x-large;
+}
+
+.results-container {
+  background-color: #212529;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.results-label {
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-right: 1rem;
+}
