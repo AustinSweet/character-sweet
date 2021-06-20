@@ -54,7 +54,7 @@ class AbilityScoreContainer extends Component {
             <div className="ability-score-wrapper">
                 <Button variant="secondary" onClick={this.toggleForm}>Add Ability Score</Button>
                 {this.state.isHidden && <div className="add-ability-score">
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit} autoCapitalize="on" autoComplete="off">
                         <label>
                             Name:
                             <input type="text" className="score-field" name="nameField" onChange={this.handleChange}></input>
