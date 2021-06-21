@@ -1,3 +1,5 @@
+import { faPenSquare } from "@fortawesome/fontawesome-free-solid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import "./AbilityScoreContainer.css";
@@ -10,6 +12,7 @@ class AbilityScoreContainer extends Component {
         let arr = JSON.parse(as);
         if (as !== null) {
             this.state = {
+                id: 1,
                 nameField: '',
                 scoreField: '',
                 modifierField: '',
@@ -24,6 +27,7 @@ class AbilityScoreContainer extends Component {
             }
         }
         this.handleChange = this.handleChange.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.toggleAddForm = this.toggleAddForm.bind(this);
         this.toggleEditForm = this.toggleEditForm.bind(this);
@@ -43,18 +47,41 @@ class AbilityScoreContainer extends Component {
 
     handleChange(event) {
         this.setState({[event.target.name]: event.target.value});
-      }
+    }
+
+    increment() {
+        let newId = 1 + this.state.id;
+        this.setState(() => ({
+            id: newId
+        }));
+    }
+
+    handleEdit(event) {
+        const { nameField, scoreField, modifierField } = this.state;
+        let scores = this.state.AbilityScoreArray;
+        let index = scores.findIndex(e => e.id === event.id)
+        scores[index] = {   'id': event.id,
+                            'name': nameField,
+                            'score': scoreField,
+                            'modifier': modifierField }
+        this.setState(() => ({
+            AbilityScoreArray: scores
+        }))
+        this.toggleEditForm();
+    }
       
-      handleSubmit(event) {
+    handleSubmit(event) {
         event.preventDefault();
         const { nameField, scoreField, modifierField } = this.state;
         console.log(nameField);
         this.setState(prevState => ({
             AbilityScoreArray: [...prevState.AbilityScoreArray,
-                                { 'name': nameField,
+                                {   'id': this.state.id,
+                                    'name': nameField,
                                     'score': scoreField,
                                     'modifier': modifierField }]
         }));
+        this.increment();
       }
 
     render(){
@@ -81,23 +108,24 @@ class AbilityScoreContainer extends Component {
                 <hr></hr> 
                 <div className="ability-scores">
                     {this.state.AbilityScoreArray.map((x) => (
-                        <div className="score-wrapper" key={x.name} onClick={this.toggleEditForm}>
+                        <div className="score-wrapper" key={x.name}>
                             {!this.state.editIsHidden && <div id="name">{x.name}</div>}
                             {!this.state.editIsHidden && <div id="score">{x.score}</div>}
                             {!this.state.editIsHidden && <div id="mod">{x.modifier}</div>}
+                            <FontAwesomeIcon className="edit-pencil" icon={faPenSquare} onClick={this.toggleEditForm}></FontAwesomeIcon>
                             {this.state.editIsHidden && <div>
-                    <form onSubmit={this.handleSubmit} autoCapitalize="on" autoComplete="off" className="edit-form">
+                    <form onSubmit={() => this.handleEdit(x)} autoCapitalize="on" autoComplete="off" className="edit-form">
                         <label>
                             Name:
-                            <input type="text" className="edit-score-field" name="nameField" value={x.name} onChange={this.handleChange}></input>
+                            <input type="text" className="edit-score-field" name="nameField" placeholder={x.name} onChange={this.handleChange}></input>
                         </label>
                         <label>
                             Score:
-                            <input type="text" className="edit-score-field" name="scoreField" value={x.score} onChange={this.handleChange}></input>
+                            <input type="text" className="edit-score-field" name="scoreField" placeholder={x.score} onChange={this.handleChange}></input>
                         </label>
                         <label>
                             Modifier:
-                            <input type="text" className="edit-score-field" name="modifierField" value={x.modifier} onChange={this.handleChange}></input>
+                            <input type="text" className="edit-score-field" name="modifierField" placeholder={x.modifier} onChange={this.handleChange}></input>
                         </label>
                         <input type="submit" className="edit-submit" value="Submit"></input>
                     </form>
