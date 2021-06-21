@@ -12,10 +12,13 @@ class AbilityScoreContainer extends Component {
         let arr = JSON.parse(as);
         if (as !== null) {
             this.state = {
-                id: 1,
+                id: 0,
                 nameField: '',
                 scoreField: '',
                 modifierField: '',
+                editNameField: '',
+                editScoreField: '',
+                editModifierField: '',
                 AbilityScoreArray: arr,
                 addIsHidden: true,
                 editIsHidden: false
@@ -33,20 +36,20 @@ class AbilityScoreContainer extends Component {
         this.toggleEditForm = this.toggleEditForm.bind(this);
     }
 
-    toggleAddForm(){
+    toggleAddForm() {
         this.setState(() => ({
             addIsHidden: !this.state.addIsHidden
         }));
     }
 
-    toggleEditForm(){
+    toggleEditForm() {
         this.setState(() => ({
             editIsHidden: !this.state.editIsHidden
         }));
     }
 
     handleChange(event) {
-        this.setState({[event.target.name]: event.target.value});
+        this.setState({ [event.target.name]: event.target.value });
     }
 
     increment() {
@@ -57,35 +60,38 @@ class AbilityScoreContainer extends Component {
     }
 
     handleEdit(event) {
-        const { nameField, scoreField, modifierField } = this.state;
         let scores = this.state.AbilityScoreArray;
         let index = scores.findIndex(e => e.id === event.id)
-        scores[index] = {   'id': event.id,
-                            'name': nameField,
-                            'score': scoreField,
-                            'modifier': modifierField }
+        scores[index] = {
+            'id': event.id,
+            'name': event.name,
+            'score': event.score,
+            'modifier': event.modifier
+        }
         this.setState(() => ({
             AbilityScoreArray: scores
         }))
         this.toggleEditForm();
     }
-      
+
     handleSubmit(event) {
         event.preventDefault();
         const { nameField, scoreField, modifierField } = this.state;
         console.log(nameField);
         this.setState(prevState => ({
             AbilityScoreArray: [...prevState.AbilityScoreArray,
-                                {   'id': this.state.id,
-                                    'name': nameField,
-                                    'score': scoreField,
-                                    'modifier': modifierField }]
+            {
+                'id': this.state.id,
+                'name': nameField,
+                'score': scoreField,
+                'modifier': modifierField
+            }]
         }));
         this.increment();
-      }
+    }
 
-    render(){
-        return(
+    render() {
+        return (
             <div className="ability-score-wrapper">
                 <Button variant="secondary" onClick={this.toggleAddForm}>Add Ability Score</Button>
                 {this.state.addIsHidden && <div className="add-ability-score">
@@ -105,7 +111,7 @@ class AbilityScoreContainer extends Component {
                         <input type="submit" value="Add"></input>
                     </form>
                 </div>}
-                <hr></hr> 
+                <hr></hr>
                 <div className="ability-scores">
                     {this.state.AbilityScoreArray.map((x) => (
                         <div className="score-wrapper" key={x.name}>
@@ -114,22 +120,22 @@ class AbilityScoreContainer extends Component {
                             {!this.state.editIsHidden && <div id="mod">{x.modifier}</div>}
                             <FontAwesomeIcon className="edit-pencil" icon={faPenSquare} onClick={this.toggleEditForm}></FontAwesomeIcon>
                             {this.state.editIsHidden && <div>
-                    <form onSubmit={() => this.handleEdit(x)} autoCapitalize="on" autoComplete="off" className="edit-form">
-                        <label>
-                            Name:
-                            <input type="text" className="edit-score-field" name="nameField" placeholder={x.name} onChange={this.handleChange}></input>
-                        </label>
-                        <label>
-                            Score:
-                            <input type="text" className="edit-score-field" name="scoreField" placeholder={x.score} onChange={this.handleChange}></input>
-                        </label>
-                        <label>
-                            Modifier:
-                            <input type="text" className="edit-score-field" name="modifierField" placeholder={x.modifier} onChange={this.handleChange}></input>
-                        </label>
-                        <input type="submit" className="edit-submit" value="Submit"></input>
-                    </form>
-                </div>}
+                                <form onSubmit={() => this.handleEdit(x)} autoCapitalize="on" autoComplete="off" className="edit-form">
+                                    <label>
+                                        Name:
+                                        <input type="text" className="edit-score-field" name="editNameField" placeholder={x.name} onChange={this.handleChange}></input>
+                                    </label>
+                                    <label>
+                                        Score:
+                                        <input type="text" className="edit-score-field" name="editScoreField" placeholder={x.score} onChange={this.handleChange}></input>
+                                    </label>
+                                    <label>
+                                        Modifier:
+                                        <input type="text" className="edit-score-field" name="editModifierField" placeholder={x.modifier} onChange={this.handleChange}></input>
+                                    </label>
+                                    <input type="submit" className="edit-submit" value="Submit"></input>
+                                </form>
+                            </div>}
                         </div>
                     ))}
                 </div>
