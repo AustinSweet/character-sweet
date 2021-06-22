@@ -1,7 +1,6 @@
-import { faPenSquare } from "@fortawesome/fontawesome-free-solid";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
+import AbilityScore from './AbilityScore';
 import "./AbilityScoreContainer.css";
 
 class AbilityScoreContainer extends Component {
@@ -16,12 +15,8 @@ class AbilityScoreContainer extends Component {
                 nameField: '',
                 scoreField: '',
                 modifierField: '',
-                editNameField: '',
-                editScoreField: '',
-                editModifierField: '',
                 AbilityScoreArray: arr,
                 addIsHidden: true,
-                editIsHidden: false
             }
         }
         else {
@@ -30,21 +25,13 @@ class AbilityScoreContainer extends Component {
             }
         }
         this.handleChange = this.handleChange.bind(this);
-        this.handleEdit = this.handleEdit.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.toggleAddForm = this.toggleAddForm.bind(this);
-        this.toggleEditForm = this.toggleEditForm.bind(this);
     }
 
     toggleAddForm() {
         this.setState(() => ({
             addIsHidden: !this.state.addIsHidden
-        }));
-    }
-
-    toggleEditForm() {
-        this.setState(() => ({
-            editIsHidden: !this.state.editIsHidden
         }));
     }
 
@@ -59,32 +46,18 @@ class AbilityScoreContainer extends Component {
         }));
     }
 
-    handleEdit(event) {
-        let scores = this.state.AbilityScoreArray;
-        let index = scores.findIndex(e => e.id === event.id)
-        scores[index] = {
-            'id': event.id,
-            'name': event.name,
-            'score': event.score,
-            'modifier': event.modifier
-        }
-        this.setState(() => ({
-            AbilityScoreArray: scores
-        }))
-        this.toggleEditForm();
-    }
-
     handleSubmit(event) {
         event.preventDefault();
         const { nameField, scoreField, modifierField } = this.state;
-        console.log(nameField);
         this.setState(prevState => ({
             AbilityScoreArray: [...prevState.AbilityScoreArray,
             {
                 'id': this.state.id,
-                'name': nameField,
-                'score': scoreField,
-                'modifier': modifierField
+                's': {
+                    'name': nameField,
+                    'score': scoreField,
+                    'modifier': modifierField
+                }
             }]
         }));
         this.increment();
@@ -93,7 +66,7 @@ class AbilityScoreContainer extends Component {
     render() {
         return (
             <div className="ability-score-wrapper">
-                <Button variant="secondary" onClick={this.toggleAddForm}>Add Ability Score</Button>
+                <Button variant="secondary" className="add-as-btn" onClick={this.toggleAddForm}>Add Ability Score</Button>
                 {this.state.addIsHidden && <div className="add-ability-score">
                     <form onSubmit={this.handleSubmit} autoCapitalize="on" autoComplete="off">
                         <label>
@@ -114,29 +87,7 @@ class AbilityScoreContainer extends Component {
                 <hr></hr>
                 <div className="ability-scores">
                     {this.state.AbilityScoreArray.map((x) => (
-                        <div className="score-wrapper" key={x.name}>
-                            {!this.state.editIsHidden && <div id="name">{x.name}</div>}
-                            {!this.state.editIsHidden && <div id="score">{x.score}</div>}
-                            {!this.state.editIsHidden && <div id="mod">{x.modifier}</div>}
-                            <FontAwesomeIcon className="edit-pencil" icon={faPenSquare} onClick={this.toggleEditForm}></FontAwesomeIcon>
-                            {this.state.editIsHidden && <div>
-                                <form onSubmit={() => this.handleEdit(x)} autoCapitalize="on" autoComplete="off" className="edit-form">
-                                    <label>
-                                        Name:
-                                        <input type="text" className="edit-score-field" name="editNameField" placeholder={x.name} onChange={this.handleChange}></input>
-                                    </label>
-                                    <label>
-                                        Score:
-                                        <input type="text" className="edit-score-field" name="editScoreField" placeholder={x.score} onChange={this.handleChange}></input>
-                                    </label>
-                                    <label>
-                                        Modifier:
-                                        <input type="text" className="edit-score-field" name="editModifierField" placeholder={x.modifier} onChange={this.handleChange}></input>
-                                    </label>
-                                    <input type="submit" className="edit-submit" value="Submit"></input>
-                                </form>
-                            </div>}
-                        </div>
+                        <AbilityScore key={x.id} info={x.s}></AbilityScore>
                     ))}
                 </div>
             </div>

@@ -3,7 +3,12 @@ input {
 }
 
 .add-ability-score {
-  margin-top: 1rem;
+  margin-top: .5rem;
+}
+
+.add-as-btn {
+  font-size: small !important;
+  background-color: #121212;
 }
 
 .ability-score-wrapper {
@@ -19,10 +24,6 @@ input {
 .edit-form {
   width: 7rem;
   cursor: pointer;
-}
-
-.edit-submit {
-  width: 6rem;
 }
 
 .edit-pencil {
@@ -45,19 +46,7 @@ input {
   background-color: lightgray;
 }
 
-.edit-score-field {
-  width: 6rem;
-  border-radius: 0.25rem;
-  background-color: lightgray;
-}
 
-#mod {
-  color: white;
-  background-color: #121212;
-  border-radius: 0.25rem;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-}
 
 #score {
   color: black;
