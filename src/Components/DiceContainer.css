@@ -7,6 +7,28 @@
   margin-top: 1.4rem;
 }
 
+.history {
+  display: inline-flex;
+  color: white;
+  z-index: 100;
+}
+
+.history-label {
+  margin-left: 2rem;
+  margin-top: 1.4rem;
+  margin-right: 0.75rem;
+}
+
+.hist-rolls {
+  background-color: black;
+  padding: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 0.25rem;
+  margin: 0.1rem;
+  margin-top: 1.4rem;
+}
+
 .custom-container {
   background-color: #212529;
   padding: 0.5rem;

@@ -99,6 +99,7 @@ class DiceContainer extends Component {
                         </div>
                         <Button variant="secondary" className="custom-die" onClick={this.rollDQuestion}>D?</Button>
                         <div className="history">
+                            <div className="history-label">Roll History: </div>
                             {this.state.history.map((x) => (
                                 <div className="hist-rolls">{ x }</div>
                             ))}
