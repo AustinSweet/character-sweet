@@ -19,6 +19,9 @@ class DiceContainer extends Component {
     }
 
     rollDice(sides) {
+        this.setState(() => ({
+            lastResult: null
+          }));
         document.getElementsByClassName("results")[0].style.color = "#0000FF";
         var roll = seedrandom();
         var x = 1 + Math.floor(sides * roll());

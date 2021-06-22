@@ -28,11 +28,11 @@ class AbilityScore extends Component {
     }
 
     handleChange(event) {
-        this.setState({ [event.target.name]: event.target.value });
+            this.setState({ [event.target.name]: event.target.value });
     }
 
     checkField(field) {
-        if (field.length > 0) {
+        if(field.length > 0) {
             return true;
         }
         else {

@@ -3,7 +3,7 @@ input {
 }
 
 .add-ability-score {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
 .add-as-btn {
@@ -18,7 +18,7 @@ input {
 .ability-score-wrapper {
   width: 10rem;
   padding: 1rem;
-  background-color: #121212;
+  border: 1px solid #303030;
 }
 
 .edit-form {
@@ -45,8 +45,6 @@ input {
   border-radius: 0.25rem;
   background-color: lightgray;
 }
-
-
 
 #score {
   color: black;

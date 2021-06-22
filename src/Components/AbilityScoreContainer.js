@@ -66,6 +66,12 @@ class AbilityScoreContainer extends Component {
     render() {
         return (
             <div className="ability-score-wrapper">
+                <div className="ability-scores">
+                    {this.state.AbilityScoreArray.map((x) => (
+                        <AbilityScore key={x.id} info={x.s}></AbilityScore>
+                    ))}
+                </div>
+                <hr></hr>
                 <Button variant="secondary" className="add-as-btn" onClick={this.toggleAddForm}>Add Ability Score</Button>
                 {this.state.addIsHidden && <div className="add-ability-score">
                     <form onSubmit={this.handleSubmit} autoCapitalize="on" autoComplete="off">
@@ -84,12 +90,6 @@ class AbilityScoreContainer extends Component {
                         <input type="submit" value="Add"></input>
                     </form>
                 </div>}
-                <hr></hr>
-                <div className="ability-scores">
-                    {this.state.AbilityScoreArray.map((x) => (
-                        <AbilityScore key={x.id} info={x.s}></AbilityScore>
-                    ))}
-                </div>
             </div>
         )
     }

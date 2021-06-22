@@ -14,7 +14,9 @@ class Shell extends Component {
             <div>
                 <div className="background">
                     <DiceContainer></DiceContainer>
-                    <AbilityScoreContainer></AbilityScoreContainer>
+                    <div className="stats">
+                        <AbilityScoreContainer></AbilityScoreContainer>
+                    </div>
                 </div>
             </div>
         );
