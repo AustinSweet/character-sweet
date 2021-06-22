@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
+import AbilityScore from './AbilityScore';
 import "./AbilityScoreContainer.css";
 
 class AbilityScoreContainer extends Component {
@@ -10,11 +11,12 @@ class AbilityScoreContainer extends Component {
         let arr = JSON.parse(as);
         if (as !== null) {
             this.state = {
+                id: 0,
                 nameField: '',
                 scoreField: '',
                 modifierField: '',
                 AbilityScoreArray: arr,
-                isHidden: true
+                addIsHidden: true,
             }
         }
         else {
@@ -24,37 +26,49 @@ class AbilityScoreContainer extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.toggleForm = this.toggleForm.bind(this);
+        this.toggleAddForm = this.toggleAddForm.bind(this);
     }
 
-    toggleForm(){
+    toggleAddForm() {
         this.setState(() => ({
-            isHidden: !this.state.isHidden
+            addIsHidden: !this.state.addIsHidden
         }));
     }
 
     handleChange(event) {
-        this.setState({[event.target.name]: event.target.value});
-      }
-      
-      handleSubmit(event) {
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
+    increment() {
+        let newId = 1 + this.state.id;
+        this.setState(() => ({
+            id: newId
+        }));
+    }
+
+    handleSubmit(event) {
         event.preventDefault();
         const { nameField, scoreField, modifierField } = this.state;
-        console.log(nameField);
         this.setState(prevState => ({
             AbilityScoreArray: [...prevState.AbilityScoreArray,
-                                { 'name': nameField,
-                                    'score': scoreField,
-                                    'modifier': modifierField }]
+            {
+                'id': this.state.id,
+                's': {
+                    'name': nameField,
+                    'score': scoreField,
+                    'modifier': modifierField
+                }
+            }]
         }));
-      }
+        this.increment();
+    }
 
-    render(){
-        return(
+    render() {
+        return (
             <div className="ability-score-wrapper">
-                <Button variant="secondary" onClick={this.toggleForm}>Add Ability Score</Button>
-                {this.state.isHidden && <div className="add-ability-score">
-                    <form onSubmit={this.handleSubmit}>
+                <Button variant="secondary" className="add-as-btn" onClick={this.toggleAddForm}>Add Ability Score</Button>
+                {this.state.addIsHidden && <div className="add-ability-score">
+                    <form onSubmit={this.handleSubmit} autoCapitalize="on" autoComplete="off">
                         <label>
                             Name:
                             <input type="text" className="score-field" name="nameField" onChange={this.handleChange}></input>
@@ -70,14 +84,10 @@ class AbilityScoreContainer extends Component {
                         <input type="submit" value="Add"></input>
                     </form>
                 </div>}
-                <hr></hr> 
+                <hr></hr>
                 <div className="ability-scores">
                     {this.state.AbilityScoreArray.map((x) => (
-                        <div className="score-wrapper" key={x.name}>
-                            <div id="name">{x.name}</div>
-                            <div id="score">{x.score}</div>
-                            <div id="mod">{x.modifier}</div>
-                        </div>
+                        <AbilityScore key={x.id} info={x.s}></AbilityScore>
                     ))}
                 </div>
             </div>

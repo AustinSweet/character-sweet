@@ -1,0 +1,40 @@
+.score-wrapper {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 8rem;
+}
+
+input {
+    width: 4rem;
+  }
+
+  .edit-pencil {
+    cursor: pointer;
+    color: #121212;
+  }
+
+  .edit-score-field {
+    width: 6rem;
+    border-radius: 0.25rem;
+    background-color: lightgray;
+  }
+
+  .edit-submit {
+    width: 6rem;
+  }
+
+#mod {
+    color: white;
+    background-color: #121212;
+    border-radius: 0.25rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+
+  #score {
+    color: black;
+    background-color: white;
+    border-radius: 0.25rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
