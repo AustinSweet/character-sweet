@@ -7,7 +7,8 @@ class DiceContainer extends Component {
     constructor(props) {
         super(props);
         this.state = { lastResult: 0,
-                        customInput: 0 };
+                        customInput: 0,
+                        history: [] };
         this.rollDice = this.rollDice.bind(this);
         this.rollD20 = this.rollD20.bind(this);
         this.rollD12 = this.rollD12.bind(this);
@@ -31,6 +32,17 @@ class DiceContainer extends Component {
           setTimeout(function(){
             document.getElementsByClassName("results")[0].style.color = "#000000";
         },1000);
+        let tempArr = this.state.history;
+        if(tempArr.length <= 7) {
+            tempArr.unshift(x);
+        }
+        if(tempArr.length > 7) {
+            tempArr.pop();
+            tempArr.unshift(x);
+        }
+        this.setState(() => ({
+            history: tempArr
+        }));
     }
 
     rollD20() {
@@ -86,6 +98,11 @@ class DiceContainer extends Component {
                         <input className="custom-input" type="text" pattern="[0-9]*" onInput={this.handleChange.bind(this)} value={this.state.customInput} />
                         </div>
                         <Button variant="secondary" className="custom-die" onClick={this.rollDQuestion}>D?</Button>
+                        <div className="history">
+                            {this.state.history.map((x) => (
+                                <div className="hist-rolls">{ x }</div>
+                            ))}
+                        </div>
                       </Navbar>
         )
     }
