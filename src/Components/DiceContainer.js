@@ -103,6 +103,7 @@ class DiceContainer extends Component {
                             {this.state.history.map((x) => (
                                 <div className="hist-rolls">{ x }</div>
                             ))}
+                            {this.state.history.length >= 7 && <div className="ellips">. . .</div>}
                         </div>
                       </Navbar>
         )
