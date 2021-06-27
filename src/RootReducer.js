@@ -1,30 +1,6 @@
-import { TEST } from "./Action-Types";
+import { combineReducers } from "redux";
+import { testReducer } from "./TestReducer";
 
-// const localStorageState = localStorage.getItem('data');
-
-// if(localStorageState) {
-//     this.initialstate = {
-//     data: JSON.parse(localStorageState)
-//     }
-
-// }
-// else {
-//     this.initialState = {
-//         testField: ""
-//     }
-// }
-
-let initialState = {
-    testField: ''
-}
-
-function rootReducer(state = initialState, action) {
-    if (action.type === TEST) {
-        return Object.assign({}, state, {
-            testField: state.testField.concat(action.payload)
-        })
-    }
-    return state;
-}
+const rootReducer = combineReducers({testReducer})
 
 export default rootReducer;

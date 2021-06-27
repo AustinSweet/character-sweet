@@ -1,5 +1,6 @@
-import { TEST } from "./Action-Types";
+import { TEST } from "./ActionTypes";
 
-export function testAction(payload) {
-    return {type: TEST, payload};
-}
+export const testAction = input => ({
+    type: TEST,
+    payload: input
+});
