@@ -7,31 +7,46 @@
   margin-top: 1.4rem;
 }
 
+.clear {
+  font-size: small;
+  height: 2rem;
+  margin-top: 1.6rem;
+}
+
 .history {
   display: inline-flex;
   color: white;
   z-index: 100;
-}
-
-.ellips {
-  margin-top: 2rem;
-  margin-left: 0.2rem;
+  margin-left: 1rem;
 }
 
 .history-label {
-  margin-left: 1rem;
-  margin-top: 1.4rem;
+  margin-left: 3rem;
   margin-right: 0.75rem;
+}
+
+.line {
+  width: 0.5rem;
 }
 
 .hist-rolls {
   background-color: black;
-  padding: 0.25rem;
-  padding-left: 0.5rem;
   padding-right: 0.5rem;
+  padding-left: 0.5rem;
   border-radius: 0.25rem;
-  margin: 0.1rem;
-  margin-top: 1.4rem;
+  margin-right: 0.5rem;
+  position: relative;
+  top: 1.6rem;
+  font-size: small;
+}
+
+#hist-type {
+  color: darkgray;
+  font-size: xx-small;
+  text-align: center;
+  margin-right: 0.4rem;
+  position: relative;
+  top: 1rem;
 }
 
 .custom-die {
@@ -83,4 +98,5 @@
   margin-right: 0.5rem;
   border-radius: 0.25rem;
   border: 1px white solid;
+  color: white;
 }

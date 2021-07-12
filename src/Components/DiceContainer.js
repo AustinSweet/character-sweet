@@ -9,7 +9,8 @@ class DiceContainer extends Component {
         this.state = { lastResult: 0,
                         customInput: 0,
                         history: [],
-                        total: 0 };
+                        total: 0,
+                        limit: 10 };
         this.rollDice = this.rollDice.bind(this);
         this.rollD20 = this.rollD20.bind(this);
         this.rollD12 = this.rollD12.bind(this);
@@ -35,12 +36,14 @@ class DiceContainer extends Component {
             document.getElementsByClassName("results")[0].style.color = "#000000";
         },1000);
         let tempArr = this.state.history;
-        if(tempArr.length <= 7) {
-            tempArr.unshift(x);
+        if(tempArr.length <= this.state.limit) {
+            tempArr.unshift({res: x,
+                            type: sides});
         }
-        if(tempArr.length > 7) {
+        if(tempArr.length > this.state.limit) {
             tempArr.pop();
-            tempArr.unshift(x);
+            tempArr.unshift({res: x,
+                            type: sides});
         }
         this.setState(() => ({
             history: tempArr
@@ -115,11 +118,17 @@ class DiceContainer extends Component {
                         {this.state.history.length > 0 && <div className="total-label">{ this.state.total } total </div> }
                         <div className="history">
                             {this.state.history.map((x) => (
-                                <div className="hist-rolls">{ x }</div>
+                                <div>
+                                <div className="hist-rolls">{ x.res }</div>
+                                <div id="hist-type">
+                                    ___
+                                    <p>{ x.type }</p>
+                                </div>
+                                </div>
                             ))}
-                            {this.state.history.length >= 7 && <div className="ellips">. . .</div>}
+                            {this.state.history.length > 0 && <Button variant="secondary" className="clear" onClick={this.clearHistory}>Clear</Button>}
+
                         </div>
-                        {this.state.history.length > 0 && <Button variant="secondary" className="die clear" onClick={this.clearHistory}>Clear</Button>}
                       </Navbar>
         )
     }
