@@ -8,7 +8,8 @@ class DiceContainer extends Component {
         super(props);
         this.state = { lastResult: 0,
                         customInput: 0,
-                        history: [] };
+                        history: [],
+                        total: 0 };
         this.rollDice = this.rollDice.bind(this);
         this.rollD20 = this.rollD20.bind(this);
         this.rollD12 = this.rollD12.bind(this);
@@ -43,6 +44,9 @@ class DiceContainer extends Component {
         }
         this.setState(() => ({
             history: tempArr
+        }));
+        this.setState(() => ({
+            total: this.state.total + x
         }));
     }
 
@@ -85,6 +89,9 @@ class DiceContainer extends Component {
         this.setState(() => ({
             history: []
         }));
+        this.setState(() => ({
+            total: 0
+        }))
     }
 
     render() {
@@ -105,6 +112,7 @@ class DiceContainer extends Component {
                         <div className="results-label">Last Roll: </div>
                         <div className="results"> { this.state.lastResult }</div>
                         </div>
+                        {this.state.history.length > 0 && <div className="total-label">{ this.state.total } total </div> }
                         <div className="history">
                             {this.state.history.map((x) => (
                                 <div className="hist-rolls">{ x }</div>

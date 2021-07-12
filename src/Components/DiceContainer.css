@@ -75,3 +75,12 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+.total-label {
+  padding: 0.3rem;
+  font-size: small;
+  margin-top: 1.5rem;
+  margin-right: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px white solid;
+}
