@@ -19,7 +19,7 @@
 }
 
 .history-label {
-  margin-left: 2rem;
+  margin-left: 1rem;
   margin-top: 1.4rem;
   margin-right: 0.75rem;
 }
@@ -44,11 +44,11 @@
   border-radius: 0.25rem;
   width: 5rem;
   text-align: center;
-  margin-left: 4rem;
+  margin-left: 0.75rem;
 }
 
 .custom-label {
-  margin-left: 4rem;
+  margin-left: 0.75rem;
   color: white;
   white-space: nowrap;
   overflow: hidden;
@@ -67,11 +67,11 @@
   background-color: #212529;
   padding: 0.5rem;
   border-radius: 0.25rem;
+  margin-left: 1rem;
 }
 
 .results-label {
   color: white;
   white-space: nowrap;
   overflow: hidden;
-  margin-right: 1rem;
 }

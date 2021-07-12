@@ -17,6 +17,7 @@ class DiceContainer extends Component {
         this.rollD6 = this.rollD6.bind(this);
         this.rollD4 = this.rollD4.bind(this);
         this.rollDQuestion = this.rollDQuestion.bind(this);
+        this.clearHistory = this.clearHistory.bind(this);
     }
 
     rollDice(sides) {
@@ -79,14 +80,16 @@ class DiceContainer extends Component {
     rollDQuestion() {
         this.rollDice(this.state.customInput);
     }
+    
+    clearHistory() {
+        this.setState(() => ({
+            history: []
+        }));
+    }
 
     render() {
         return (
                       <Navbar bg="dark" variant="dark" className="all-dice">
-                      <div className="results-container">
-                        <div className="results-label">Last Roll: </div>
-                        <div className="results"> { this.state.lastResult }</div>
-                        </div>
                         <Button variant="secondary" className="die" onClick={this.rollD20}>D20</Button>
                         <Button variant="secondary" className="die" onClick={this.rollD12}>D12</Button>
                         <Button variant="secondary" className="die" onClick={this.rollD10}>D10</Button>
@@ -98,13 +101,17 @@ class DiceContainer extends Component {
                         <input className="custom-input" type="text" pattern="[0-9]*" onInput={this.handleChange.bind(this)} value={this.state.customInput} />
                         </div>
                         <Button variant="secondary" className="custom-die" onClick={this.rollDQuestion}>D?</Button>
+                        <div className="results-container">
+                        <div className="results-label">Last Roll: </div>
+                        <div className="results"> { this.state.lastResult }</div>
+                        </div>
                         <div className="history">
-                            <div className="history-label">Roll History: </div>
                             {this.state.history.map((x) => (
                                 <div className="hist-rolls">{ x }</div>
                             ))}
                             {this.state.history.length >= 7 && <div className="ellips">. . .</div>}
                         </div>
+                        {this.state.history.length > 0 && <Button variant="secondary" className="die clear" onClick={this.clearHistory}>Clear</Button>}
                       </Navbar>
         )
     }
