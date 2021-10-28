@@ -115,8 +115,10 @@ class DiceContainer extends Component {
                         <div className="results-label">Last Roll: </div>
                         <div className="results"> { this.state.lastResult }</div>
                         </div>
-                        {this.state.history.length > 0 && <div className="total-label">{ this.state.total } total </div> }
+                        {this.state.history.length > 0 && <div className="total-label">{ this.state.total } total </div>}
                         <div className="history">
+                        {this.state.history.length > 0 && <Button variant="secondary" className="clear" onClick={this.clearHistory}>Clear</Button>}
+                        {this.state.history.length > 0 && <div className="roll-history-label">Roll History:</div> }
                             {this.state.history.map((x) => (
                                 <div>
                                 <div className="hist-rolls">{ x.res }</div>
@@ -126,8 +128,6 @@ class DiceContainer extends Component {
                                 </div>
                                 </div>
                             ))}
-                            {this.state.history.length > 0 && <Button variant="secondary" className="clear" onClick={this.clearHistory}>Clear</Button>}
-
                         </div>
                       </Navbar>
         )

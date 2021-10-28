@@ -17,12 +17,21 @@
   display: inline-flex;
   color: white;
   z-index: 100;
-  margin-left: 1rem;
+  margin-left: 2.5rem;
 }
 
 .history-label {
   margin-left: 3rem;
   margin-right: 0.75rem;
+}
+
+.roll-history-label {
+  padding-bottom: unset;
+  padding: 0.3rem;
+  font-size: small;
+  margin-top: 1.65rem;
+  margin-right: 0.5rem;
+  color: white;
 }
 
 .line {
