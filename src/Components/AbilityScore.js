@@ -23,6 +23,8 @@ class AbilityScore extends Component {
 
     toggleEditForm() {
         this.setState(() => ({
+            //TODO this doesn't toggle the form's existence, merely the display
+            //May need better solutions in the future 
             editIsHidden: !this.state.editIsHidden
         }));
     }
