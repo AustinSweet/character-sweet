@@ -25,6 +25,7 @@ class AbilityScore extends Component {
         this.setState(() => ({
             //TODO this doesn't toggle the form's existence, merely the display
             //May need better solutions in the future 
+            //hey, it's been month's and you haven't fixed this
             editIsHidden: !this.state.editIsHidden
         }));
     }
